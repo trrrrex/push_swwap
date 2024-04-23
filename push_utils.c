@@ -131,12 +131,9 @@ int	check_duplicates(char **input)
 		j = i;
 		while (input[j])
 		{
-			// if (i != j)
-			if (ft_atoi(input[i], &error) == ft_atoi(input[j], &error))
-            {
-                ft_printf("Error \n");
-			    return (1);
-            }
+			if (i != j)
+				if (ft_atoi(input[i], &error) == ft_atoi(input[j], &error))
+			    	return (1);
 			j++;
 		}
 		i++;

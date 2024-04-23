@@ -40,7 +40,10 @@ int main(int argc, char **argv)
     //}
     while (i < argc)
     {
-        check_duplicates(argv[num]);
+        // if (check_duplicates(argv))
+        // {
+        //     ft_printf("Error\n");
+        // }
         num = ft_atoi(argv[i], &error);
         if (error || (num == 0 && ft_strcmp(argv[i], "0") != 0)) // упраление вводом неправильным 
         {
