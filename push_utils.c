@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 long ft_atoi(char *str) // **gucci** atoi with overflow checks added 
 {
     unsigned int    i;
@@ -39,7 +39,7 @@ long ft_atoi(char *str) // **gucci** atoi with overflow checks added
         
         // Check for overflow
         if (check > (9223372036854775807ULL - digit) / 10) // Макс значение лонг лонга
-            return 0; // Оверфлоу возращает ноль 
+            return (-1); // Оверфлоу возращает pomylku
 
         check = check * 10 + digit;
         i++;
@@ -49,6 +49,34 @@ long ft_atoi(char *str) // **gucci** atoi with overflow checks added
         return 0;
     return (int)(np * check);
 
+}*/
+int	ft_atoi(char *str, int *flag)
+{
+	int		indx;
+	long	suma;
+	int		signo;
+
+	indx = 0;
+	suma = 0;
+	signo = 1;
+	while (str[indx] == 32 || (str[indx] >= 9 && str[indx] <= 13))
+		indx++;
+	if (str[indx] == '-' || str[indx] == '+')
+	{
+		if (str[indx] == '-')
+			signo = signo * -1;
+		indx++;
+	}
+	while (str[indx] >= '0' && str[indx] <= '9')
+	{
+		suma = suma * 10 + (str[indx] - '0');
+		indx++;
+		if (signo * suma > 2147483647 || signo * suma < -2147483648)
+			return (*flag = 1, 0);
+	}
+	if ((indx > 0 && (str[indx - 1] < '0')) || str[indx] != '\0')
+		*flag = 1;
+	return (suma * signo);
 }
 
 int ft_strcmp(const char *s1, const char *s2) 
@@ -61,19 +89,20 @@ int ft_strcmp(const char *s1, const char *s2)
     return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	ft_add_to_list(t_list **head, int val)
+void    ft_add_to_list(t_stack **head, int val)
 {
-	t_list	*new_node;
-	t_list	*current;
-	
-	*new_node = malloc(sizeof(*new_node));
+    t_stack	*new_node;
+	t_stack	*current;
+
+	new_node = (t_stack *)malloc(sizeof(t_stack));
+
 	if	(new_node == NULL)
 	{
 		ft_printf("Error\n");
 		exit (1);
 	}
-	new_node->data = val;
-	new_node->next = "NULL"; //последний нод
+	new_node->num = val;
+	new_node->next = NULL; //последний нод
 	
 	//проверить пустой ли лиииииист
 	if (*head == NULL)
@@ -81,9 +110,10 @@ void	ft_add_to_list(t_list **head, int val)
 	// если лист не пустой, ищем последний нод и добавляем новый
 	else
 	{
-		*current = *head;
-		while (current->next != 'NULL')
+		current = *head;
+		while (current->next != NULL)
 			current = current->next;
 		current->next = new_node;
 	}
+
 }
