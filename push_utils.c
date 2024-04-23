@@ -117,3 +117,29 @@ void    ft_add_to_list(t_stack **head, int val)
 	}
 
 }
+
+int	check_duplicates(char **input)
+{
+	int	i;
+	int	j;
+    int error;
+
+	i = 0;
+	j = 0;
+	while (input[i])
+	{
+		j = i;
+		while (input[j])
+		{
+			// if (i != j)
+			if (ft_atoi(input[i], &error) == ft_atoi(input[j], &error))
+            {
+                ft_printf("Error \n");
+			    return (1);
+            }
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

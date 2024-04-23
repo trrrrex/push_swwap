@@ -11,7 +11,7 @@ RESET = \033[0m
 
 
 # Source and object files
-SRCS = push_swap.c push_utils.c
+SRCS = push_swap.c push_utils.c #move.c stack_act.c
 OBJS = $(SRCS:.c=.o)
 
 # Default target: compile and link the executable

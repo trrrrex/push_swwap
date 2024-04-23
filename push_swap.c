@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     //}
     while (i < argc)
     {
-
+        check_duplicates(argv[num]);
         num = ft_atoi(argv[i], &error);
         if (error || (num == 0 && ft_strcmp(argv[i], "0") != 0)) // упраление вводом неправильным 
         {
@@ -57,11 +57,11 @@ int main(int argc, char **argv)
     }
 
     cursor = a;
-    // while (cursor != NULL)
-    // {
-    //     ft_printf("Node value : %d\n", cursor->num);
-    //     cursor = cursor->next;
-    // }
+    while (cursor != NULL)
+    {
+        ft_printf("Node value : %d\n", cursor->num);
+        cursor = cursor->next;
+    }
 
     free (a);
 
