@@ -31,19 +31,17 @@ int main(int argc, char **argv)
         return (0);
     }
 
+        // Check if arguments are valid
+    if (ft_arg_checker(argv + 1) == 1)
+    {
+        ft_printf("Error\n");
+        return (1);  // Return on error
+    }
+        // Check for duplicates
 
-    //a = malloc(sizeof(*a));
-    //if (!a)
-   // {
-    //    ft_printf("Error\n");
-   //     return 1;
-    //}
     while (i < argc)
     {
-        // if (check_duplicates(argv))
-        // {
-        //     ft_printf("Error\n");
-        // }
+
         num = ft_atoi(argv[i], &error);
         if (error || (num == 0 && ft_strcmp(argv[i], "0") != 0)) // упраление вводом неправильным 
         {

@@ -52,31 +52,31 @@ long ft_atoi(char *str) // **gucci** atoi with overflow checks added
 }*/
 int	ft_atoi(char *str, int *flag)
 {
-	int		indx;
-	long	suma;
-	int		signo;
+	int		i;
+	long	max;
+	int		np;
 
-	indx = 0;
-	suma = 0;
-	signo = 1;
-	while (str[indx] == 32 || (str[indx] >= 9 && str[indx] <= 13))
-		indx++;
-	if (str[indx] == '-' || str[indx] == '+')
+	i = 0;
+	max = 0;
+	np = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[indx] == '-')
-			signo = signo * -1;
-		indx++;
+		if (str[i] == '-')
+			np = np * -1;
+		i++;
 	}
-	while (str[indx] >= '0' && str[indx] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		suma = suma * 10 + (str[indx] - '0');
-		indx++;
-		if (signo * suma > 2147483647 || signo * suma < -2147483648)
+		max = max * 10 + (str[i] - '0');
+		i++;
+		if (np * max > 2147483647 || np * max < -2147483648)
 			return (*flag = 1, 0);
 	}
-	if ((indx > 0 && (str[indx - 1] < '0')) || str[indx] != '\0')
+	if ((i > 0 && (str[i - 1] < '0')) || str[i] != '\0')
 		*flag = 1;
-	return (suma * signo);
+	return (max * np);
 }
 
 int ft_strcmp(const char *s1, const char *s2) 
@@ -136,6 +136,25 @@ int	check_duplicates(char **input)
 			    	return (1);
 			j++;
 		}
+		i++;
+	}
+	return (0);
+}
+
+int	ft_arg_checker(char **av)
+{
+	int		i;
+	int		num;
+	int		error = 0;
+
+	i = 0;
+	while (av[i])
+	{
+		num = ft_atoi(av[i], &error);
+		if (num > INT_MAX || num < INT_MIN)
+			return (1);
+		else if (check_duplicates(av) == 1)
+			return (1);
 		i++;
 	}
 	return (0);

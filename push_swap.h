@@ -2,6 +2,7 @@
 # define PUSH_SWAP_H
 // принтф
 #include "../push_swwap/ft_printf/ft_printf.h"
+#include <limits.h>
 
 // структура стаков
 typedef struct s_stack{
@@ -21,6 +22,7 @@ void 	ft_add_to_list(t_stack **head, int val);
 int     ft_strcmp(const char *s1, const char *s2);
 int     ft_atoi(char *str, int *error);
 int	    check_duplicates(char **input);
+int	    ft_arg_checker(char **av);
 
 // actions towards stacks 
 void	ft_stack_rot(t_stack *stack);
